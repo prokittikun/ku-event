@@ -1,16 +1,24 @@
-import { RootState } from "@/store/root";
-import { countActions } from "@/store/slice/counterSlice";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import styled from "@emotion/styled";
+import tw from "twin.macro";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Search from "components/SearchBar";
+import EventMenu from "components/EventMenu";
+
+const Container = styled.div`
+    ${tw`flex p-5`}
+`;
 
 const Index: React.FC = () => {
-    const count = useSelector((state: RootState) => state.countSlice.count);
-    const dispatch = useDispatch()
     return (
-        <div className="absolute top-0 bottom-0 right-0 left-0 flex flex-col justify-center items-center">
-            <div>{count}</div>
-            <button onClick={()=>dispatch(countActions.increase())}>increase</button>
-            <button onClick={()=>dispatch(countActions.decrease())}>decrease</button>
+        <div className="max-w-2xl bg-green-400 h-screen mx-auto">
+            <Container className="justify-center pt-5">
+                <Search />
+            </Container>
+            <Container className="justify-start">
+                <EventMenu />
+            </Container>
         </div>
     );
 };
